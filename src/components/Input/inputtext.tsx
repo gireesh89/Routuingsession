@@ -11,6 +11,12 @@ interface textBoxProps {
     btnName?:string
 }
 
+interface IdropdownProps{
+    id:string,
+    labelName:string,
+    dropdownOptions:any    
+}
+
 class Txtbox extends React.Component<textBoxProps> {
       
     constructor(props:any){
@@ -60,13 +66,30 @@ class BtnSubmit extends Component<textBoxProps>{
     }
     render(){
         return(
-            <div>
-                <button type={this.props.type}>{this.props.btnName}</button>
+            <div className="form-group">
+                <button className="btn btn-primary" type={this.props.type}>{this.props.btnName}</button>
             </div>
         );
+    }
+}
+
+class Drpbox extends Component<IdropdownProps,any>{
+    constructor(props:any){
+        super(props);
+        this.state={id:"",labelName:""}
+    }
+    render(){
+        const divStyle={
+            width:"50%"
+        }
+        return(<div className="form-group" style={divStyle}>
+            <label>{this.props.labelName}</label>   
+            <select className="form-control" id={this.props.id}>{this.props.dropdownOptions}</select>
+        </div>)
     }
 }
 
 export {Txtbox};
 export {TxtArea};
 export {BtnSubmit};
+export {Drpbox};
